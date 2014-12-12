@@ -15,11 +15,11 @@
 #		attempts, invalid users and output the source ips.
 # ------------------------------------------------------------------------------
 
-# Settings - You can change the setting according your configuration
+# Settings - You can change the settings according to your configuration
 CURRENT="/var/log/auth.log /var/log/auth.log.1"
 COMPACTED="/var/log/auth.log.[[:digit:]].gz"
 
-# to show only the last attempts, you can use this line
+# To show only the last attempts you can use this line
 #AUTHLOG="$CURRENT"
 AUTHLOG="$CURRENT $COMPACTED"
 
@@ -77,7 +77,7 @@ function attempts()
 	esac
 }
 
-# main
+# Main
 for file in $AUTHLOG;
 do
 	attempts $file $1 $2
@@ -86,7 +86,7 @@ done
 # I'm using sort twice here because it is not sorting correctly when called once
 cat $RESULTTEMP | sort | uniq -c | tr -s " " | cut -c2- | sort -n -k1 -r 
 
-# removing temporary files
+# Removing temporary files
 rm $TEMP
 rm $RESULTTEMP
 
