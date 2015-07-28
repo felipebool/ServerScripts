@@ -9,4 +9,4 @@ $ sudo ./vhost.sh server_name user-owner
 ```
 where:
 * server_name: domain name, without www, e.g. awesomeness.com
-* user-owner: user will be used, e.g. www-data
+* user-owner: user who will be used, e.g. www-data
