@@ -12,6 +12,6 @@ where:
 * user-owner: user who will be used, e.g. www-data
 
 ## strongpass.sh
-Tired of thinking about a new password or looking for an online password generator? Here is the solution! With strongpass.sh generate you can generate safe password in the command line! =)
+Little tool I've made to generate safe passwords!
 
 $ ./strongpass.sh password_lenth 
