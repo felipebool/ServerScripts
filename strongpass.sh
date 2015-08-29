@@ -3,9 +3,9 @@
 #  strongpass.sh
 #
 # what it does?
-#  Output a strong password according to a few parameters
+#  Output a strong password
 #
-# usage: ./strongpass.sh -l|--length
+# usage: ./strongpass.sh <password length>
 #
 # author
 #  felipe lopes - bolzin [at] gmail [dot] com
