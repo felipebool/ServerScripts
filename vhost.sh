@@ -74,12 +74,14 @@ fi
 PERMISSION=$(stat -t --format=%a /var/www)
 if [ $PERMISSION != "755" ]; then chmod 755 /var/www; fi
 
-# create and set permission to document root
+# create document root
 mkdir -p $DOCUMENT_ROOT
-chown -R "$2":"$2" $DOCUMENT_ROOT
 
 # create an index.php inside document root
 echo $INDEX > $DOCUMENT_ROOT/index.php
+
+# change document root ownership
+chown -R "$2":"$2" $DOCUMENT_ROOT
 
 # create vhost conf file
 cat <<EOF > "$VHOST_FILE"
