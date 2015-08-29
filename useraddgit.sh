@@ -1,13 +1,11 @@
 #!/bin/bash
 # script
-#  addgit.sh
+#  useraddgit.sh
 #
 # what it does?
-#  Create a new user called git and put it into a www-data group
+#  Create a new user called git and put it into www-data group
 #
-# usage: sudo ./vhost.sh <server_name> <user-owner>
-#  <server_name>: domain name, without www, e.g. awesomeness.com
-#  <user-owner>: user will be used, e.g. www-data
+# usage: sudo ./useraddgit.sh
 #
 # author
 #  felipe lopes - bolzin [at] gmail [dot] com
