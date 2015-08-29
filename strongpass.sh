@@ -38,7 +38,7 @@ NUM=(0 1 2 3 4 5 6 7 8 9)
 PASS=""
 
 for i in $(seq 1 $SIZE); do
-   WAY=$(( ( RANDOM % 4 )  + 1 ))
+   WAY=$(((RANDOM % 4) + 1))
    case $WAY in
       1)PASS=$PASS${SPECIAL[$(((RANDOM % ${#SPECIAL[@]}) + 1))]};;
       2)PASS=$PASS${LOWER[$(((RANDOM % ${#LOWER[@]}) + 1))]};;
