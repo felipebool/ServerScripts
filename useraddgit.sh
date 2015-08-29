@@ -34,7 +34,7 @@
 GITUSER="git"
 GITHOME="/home/git"
 GITCOMMENT="git user"
-GITWEBGROUP="www-data"
+WEBGROUP="www-data"
 
 GITSSHDIR="$HOME/.ssh"
 GITAUTHORIZEDKEYS="$GITSSHDIR/authorized_keys"
@@ -49,7 +49,7 @@ fi
 useradd $GITUSER
 
 # modify git user
-usermod -c $GITCOMMENT -d $GITHOME -a -G $GITWEBGROUP
+usermod -c $GITCOMMENT -d $GITHOME -a -G $WEBGROUP
 
 mkdir -m 700 $GITSSHDIR
 
