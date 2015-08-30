@@ -5,7 +5,9 @@
 # what it does?
 #  Download
 #
-# usage: sudo ./wordpress.sh
+# usage: sudo ./wordpress.sh location project_prefix
+#  location: the path to where wordpress will be installed
+#  project_prefix: little token used to ease projects organization
 #
 # author
 #  felipe lopes - bolzin [at] gmail [dot] com
@@ -30,25 +32,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-# settings
-WPDIR=$1
-WPURL="https://br.wordpress.org/latest-pt_BR.zip"
-WPTEMPDIR=$WPDIR/wordpress
-WPZIPPATH="$WPDIR/$(basename $WPURL)"
-WPCONFIG=$WPDIR/wp-config.php
+strong_pass() {
+   SIZE=$1
+   SPECIAL=(\! \@ \# \$ \% \& \* \_ \- \+ \= \{ \[ \} \] \^ \~ \> \< \. \,) 
+   LOWER=(a b c d e f g h i j k l m n o p q r s t u v w x y z)
+   UPPER=(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
+   NUM=(0 1 2 3 4 5 6 7 8 9)
+   PASS=""
 
-# download wordpress to WPDIR 
-wget $WPURL -P $WPDIR
+   for i in $(seq 1 $SIZE); do
+      WAY=$(((RANDOM % 4) + 1))
+      case $WAY in
+         1)PASS=$PASS${SPECIAL[$(((RANDOM % ${#SPECIAL[@]}) + 1))]};;
+         2)PASS=$PASS${LOWER[$(((RANDOM % ${#LOWER[@]}) + 1))]};;
+         3)PASS=$PASS${UPPER[$(((RANDOM % ${#UPPER[@]}) + 1))]};;
+         4)PASS=$PASS${NUM[$(((RANDOM % ${#NUM[@]}) + 1))]};;
+      esac
+   done
 
-# extract zip content to WPDIR
-unzip $WPZIPPATH -d $WPDIR
+   echo "$PASS"
+}
 
-# moving files to WPDIR and removing wordpress dir
-mv $WPTEMPDIR/* $WPDIR
-rmdir $WPTEMPDIR
-
-# creating wp-config.php -------------------------------------------------------
-cat <<EOF > "$WPCONFIG"
+output_wpconfig() {
+#cat <<EOF > "$WPCONFIG"
+cat <<EOF
 <?php
 define('DB_NAME', '$WPDBNAME');
 define('DB_USER', '$WPDBUSER');
@@ -69,4 +76,48 @@ if (!defined('ABSPATH'))
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');
 EOF
-# ------------------------------------------------------------------------------
+}
+
+
+# settings
+WPDIR=$1
+WPURL="https://br.wordpress.org/latest-pt_BR.zip"
+WPTEMPDIR=$WPDIR/wordpress
+WPZIPPATH="$WPDIR/$(basename $WPURL)"
+WPCONFIG=$WPDIR/wp-config.php
+
+WPDBNAME=$2"_dbwp"
+WPDBUSER=$2"_dbuser"
+WPDBPASS=$(strong_pass 15)
+
+WPADMINPANELUSER=$2"_admin"
+WPADMINPANELPASS=$(strong_pass 15)
+
+
+# download wordpress to WPDIR 
+#wget $WPURL -P $WPDIR
+
+# extract zip content to WPDIR
+#unzip $WPZIPPATH -d $WPDIR
+
+# moving files to WPDIR and removing wordpress dir
+#mv $WPTEMPDIR/* $WPDIR
+#rmdir $WPTEMPDIR
+
+output_wpconfig
+
+
+echo "wordpress installation info"
+echo "- database"
+echo "wp db user: "$WPDBUSER
+echo "wp db name: "$WPDBNAME
+echo "wp db pass: "$WPDBPASS
+echo "- wordpress"
+echo "wp admin panel user: "$WPADMINPANELUSER
+echo "wp admin panel pass: "$WPADMINPANELPASS
+
+
+
+# TODO LIST
+# test parameters
+# generate database/database user
