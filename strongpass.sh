@@ -40,10 +40,10 @@ PASS=""
 for i in $(seq 1 $SIZE); do
    WAY=$(((RANDOM % 4) + 1))
    case $WAY in
-      1)PASS=$PASS${SPECIAL[$(((RANDOM % ${#SPECIAL[@]}) + 1))]};;
-      2)PASS=$PASS${LOWER[$(((RANDOM % ${#LOWER[@]}) + 1))]};;
-      3)PASS=$PASS${UPPER[$(((RANDOM % ${#UPPER[@]}) + 1))]};;
-      4)PASS=$PASS${NUM[$(((RANDOM % ${#NUM[@]}) + 1))]};;
+      1)PASS=$PASS${SPECIAL[$((RANDOM % ${#SPECIAL[@]}))]};;
+      2)PASS=$PASS${LOWER[$((RANDOM % ${#LOWER[@]}))]};;
+      3)PASS=$PASS${UPPER[$((RANDOM % ${#UPPER[@]}))]};;
+      4)PASS=$PASS${NUM[$((RANDOM % ${#NUM[@]}))]};;
    esac
 done
 
