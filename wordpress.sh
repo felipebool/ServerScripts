@@ -113,6 +113,7 @@ rmdir $WPDIR/wordpress
 
 output_wpconfig
 
+echo "- MySQL access"
 createdb $WPDBUSER $WPDBPASS $WPDBNAME
 
 echo "wordpress installation info"
