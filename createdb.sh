@@ -34,7 +34,8 @@
 # THE SOFTWARE.
 
 # TODO
-# how can I run it safely without prompting root password...?
+# - how can I run it safely without prompting root password...?
+# - DB_USER must have at maximum 16 characters, so it need to be tested
 
 DB_USER=$1
 DB_PASS=$2
