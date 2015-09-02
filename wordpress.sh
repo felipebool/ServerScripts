@@ -78,11 +78,19 @@ require_once(ABSPATH . 'wp-settings.php');
 EOF
 }
 
+# test usage
+if [ $# -ne 2 ]; then
+cat <<EOF
+usage: ./wordpress <wp_installation_path> <wp_project_name>
+   <wp_installation_path>: absolute path where wordpress will be installed
+   <wp_project_name>: wordpress project name, without spaces
+EOF
+   exit 1
+fi
 
 # settings
 WPDIR=$1
 WPURL="https://br.wordpress.org/latest-pt_BR.zip"
-WPTEMPDIR=$WPDIR/wordpress
 WPZIPPATH="$WPDIR/$(basename $WPURL)"
 WPCONFIG=$WPDIR/wp-config.php
 
@@ -93,31 +101,26 @@ WPDBPASS=$(strong_pass 15)
 WPADMINPANELUSER=$2"_admin"
 WPADMINPANELPASS=$(strong_pass 15)
 
-
 # download wordpress to WPDIR 
-#wget $WPURL -P $WPDIR
+wget $WPURL -P $WPDIR
 
 # extract zip content to WPDIR
-#unzip $WPZIPPATH -d $WPDIR
+unzip $WPZIPPATH -d $WPDIR
 
 # moving files to WPDIR and removing wordpress dir
-#mv $WPTEMPDIR/* $WPDIR
-#rmdir $WPTEMPDIR
+mv $WPDIR/wordpress/* $WPDIR
+rmdir $WPDIR/wordpress
 
 output_wpconfig
 
+createdb $WPDBUSER $WPDBPASS $WPDBNAME
 
 echo "wordpress installation info"
 echo "- database"
-echo "wp db user: "$WPDBUSER
-echo "wp db name: "$WPDBNAME
-echo "wp db pass: "$WPDBPASS
+echo -e "\twp db user: "$WPDBUSER
+echo -e "\twp db name: "$WPDBNAME
+echo -e "\twp db pass: "$WPDBPASS
 echo "- wordpress"
-echo "wp admin panel user: "$WPADMINPANELUSER
-echo "wp admin panel pass: "$WPADMINPANELPASS
+echo -e "\twp admin panel user: "$WPADMINPANELUSER
+echo -e "\twp admin panel pass: "$WPADMINPANELPASS
 
-
-
-# TODO LIST
-# test parameters
-# generate database/database user

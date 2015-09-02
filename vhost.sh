@@ -38,7 +38,6 @@ SERVER_ADMIN="webmaster@$1"
 VHOST_DIR="/var/www/$1"
 DOCUMENT_ROOT="$VHOST_DIR/public_html"
 
-INDEX="<?php echo \"<h1>$1</h1>\"; ?>"
 VHOST_FILE="/etc/apache2/sites-available/$SERVER_NAME.conf"
 
 # test if root
@@ -76,6 +75,8 @@ if [ $PERMISSION != "755" ]; then chmod 755 /var/www; fi
 
 # create document root
 mkdir -p $DOCUMENT_ROOT
+
+chmod 775 $DOCUMENT_ROOT
 
 # create an index.php inside document root
 echo $INDEX > $DOCUMENT_ROOT/index.php
