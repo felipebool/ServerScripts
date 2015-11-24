@@ -32,6 +32,31 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+# TODO
+#
+# -- create a -post-install option with post installation security procedures
+# - remove install.php from /wp-admin after installation is finished
+# - remove upgrade.php from /wp-admin after installation is finished
+# - remove wp-config-sample.php
+# - remove akismet
+# - remove hello dolly
+# - remove other themes
+# - remove wordpress unnecessary files
+#   -> https://wordpress.org/support/topic/unnecessary-wp-files
+# - hide debug and errors from production server
+#   -> define( 'WP_DEBUG',         false );
+#   -> define( 'WP_DEBUG_LOG',     false );
+#   -> define( 'WP_DEBUG_DISPLAY', false );
+#   -> define( 'SCRIPT_DEBUG',     false );
+# - disable theme editor:
+#   -> define( 'DISALLOW_FILE_EDIT', true );
+# - sudo chown -R www-data /wordpress/installation/path
+# - chmod 644 wp-config.php
+# -- create a --install
+# - change default database prefix
+# - what is the minimum wordpress database grants needed?
+
+
 strong_pass() {
    SIZE=$1
    SPECIAL=(\! \@ \# \$ \% \& \* \_ \- \+ \= \{ \[ \} \] \^ \~ \> \< \. \,) 
