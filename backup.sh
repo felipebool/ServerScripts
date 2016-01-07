@@ -86,23 +86,11 @@ clean_up() {
    rm -rf $TMPROOTBACKUP
 }
 
-printvars() {
-   echo "tmprootbackup: "$TMPROOTBACKUP
-   echo
-   echo "logicalcompressed: "$LOGICALCOMPRESSED
-   echo
-   echo "varwwwcompressed: "$WWWCOMPRESSED
-   echo "vargitcompressed: "$GITCOMPRESSED
-   echo
-   echo "backupsource: "$BACKUPSOURCE
-}
-
 # main -------------------------------------------------------------------------
 if not_running_as_root; then exit 1; fi
 
 logical_backup
 phisical_backup
 make_backup
-#send_backup
-printvars
+send_backup
 clean_up
