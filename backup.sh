@@ -94,3 +94,6 @@ phisical_backup
 make_backup
 send_backup
 clean_up
+
+exit 0
+
