@@ -35,6 +35,7 @@ service apache2 restart
 # - git
 # - vim
 # - ntp
+# dpkg-reconfigure tzdata
 
 exit 0
 
