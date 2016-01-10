@@ -26,11 +26,22 @@ mysql_secure_installation
 echo "Installing PHP..."
 apt-get install php5 php-pear php5-mysql
 
+echo "Installing PHPMyAdmin..."
+apt-get install -y phpmyadmin
+
+echo "Instalando NTP..."
+apt-get install ntp ntpdate
+
+
 echo "Reiniciando Apache"
 service apache2 restart
 
+
+
+
 # TODO
 # --default-applications, -d:
+# - make it less interactive
 # - htop
 # - git
 # - vim
