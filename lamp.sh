@@ -36,6 +36,7 @@ service apache2 restart
 # - vim
 # - ntp
 # dpkg-reconfigure tzdata
+# apt-get -y remove --purge exim4
 
 exit 0
 
