@@ -34,8 +34,7 @@ service apache2 restart
 # - htop
 # - git
 # - vim
-
-
+# - ntp
 
 exit 0
 
